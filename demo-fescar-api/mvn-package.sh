@@ -1,1 +1,0 @@
-mvn install:install-file -Dfile=/Users/trouble-man/IdeaProjects/demo-parent-springboot2-/demo-fescar-api/target/demo-fescar-api-1.0-SNAPSHOT.jar -DgroupId=tm -DartifactId=demo-dubbo-fescar-api -Dversion=1.0-SNAPSHOT -Dpackaging=jar
