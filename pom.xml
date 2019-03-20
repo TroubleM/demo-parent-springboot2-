@@ -11,6 +11,7 @@
   <modules>
     <module>demo-dubbo-fescar</module>
       <module>demo-security</module>
+    <module>demo-springcloud-eureka</module>
   </modules>
 
   <name>demo-parent-springboot2</name>
