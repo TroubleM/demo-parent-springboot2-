@@ -9,7 +9,8 @@
   <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
   <modules>
-    <module>demo-fescar</module>
+    <module>demo-dubbo-fescar</module>
+      <module>demo-security</module>
   </modules>
 
   <name>demo-parent-springboot2</name>
@@ -26,7 +27,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <fescar-all.version>0.1.0-SNAPSHOT</fescar-all.version>
   </properties>
 
   <dependencies>

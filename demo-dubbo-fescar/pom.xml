@@ -18,9 +18,9 @@
         <module>demo-fescar-producer-account</module>
     </modules>
 
-    <artifactId>demo-fescar</artifactId>
+    <artifactId>demo-dubbo-fescar</artifactId>
 
-    <name>demo-fescar</name>
+    <name>demo-dubbo-fescar</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
@@ -28,6 +28,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <fescar-all.version>0.2.0</fescar-all.version>
+        <curator-framework.version>2.11.0</curator-framework.version>
+        <curator-recipes.version>2.11.0</curator-recipes.version>
+
     </properties>
 
     <dependencies>
@@ -57,8 +61,20 @@
         </dependency>
 
         <!--fescar dependency end-->
-    </dependencies>
 
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
+            <version>${curator-framework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>${curator-recipes.version}</version>
+        </dependency>
+
+    </dependencies>
     <build>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
