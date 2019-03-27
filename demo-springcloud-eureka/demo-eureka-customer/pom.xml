@@ -3,29 +3,59 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>demo-parent-springboot2</artifactId>
+        <artifactId>demo-springcloud-eureka</artifactId>
         <groupId>tm</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>demo-springcloud-eureka</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>demo-eureka-customer</artifactId>
 
-    <name>demo-springcloud-eureka</name>
+    <name>demo-eureka-customer</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
-    <modules>
-        <module>demo-eureka-server</module>
-        <module>demo-eureka-customer</module>
-        <module>demo-eureka-producer-order</module>
-    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <cloud.eureka.version>1.4.3.RELEASE</cloud.eureka.version>
+        <cloud.feign.version>1.4.3.RELEASE</cloud.feign.version>
     </properties>
+
+    <dependencies>
+        <!--eureka-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+            <version>${cloud.eureka.version}</version>
+        </dependency>
+
+        <!--feign-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+            <version>${cloud.feign.version}</version>
+        </dependency>
+
+<!--        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-openfeign-core</artifactId>
+            <version>2.0.2.RELEASE</version>
+        </dependency>-->
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Finchley.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
