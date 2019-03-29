@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=/Users/trouble-man/IdeaProjects/demo-parent-springboot2-/demo-cloud-fescar/demo-cloud-fescar-api/target/demo-cloud-fescar-api-1.0-SNAPSHOT.jar -DgroupId=tm -DartifactId=demo-cloud-fescar-api -Dversion=1.0-SNAPSHOT -Dpackaging=jar
