@@ -19,6 +19,7 @@
         <module>demo-eureka-server</module>
         <module>demo-eureka-customer</module>
         <module>demo-eureka-producer-order</module>
+        <module>demo-eureka-api</module>
     </modules>
 
     <properties>

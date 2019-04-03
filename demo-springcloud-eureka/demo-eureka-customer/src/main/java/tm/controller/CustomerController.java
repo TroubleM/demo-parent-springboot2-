@@ -15,6 +15,7 @@ public class CustomerController{
 
     @GetMapping(value = "test1")
     public Object test1(String orderNo){
-        return customerService.customerTest1(orderNo);
+        Object object = customerService.customerTest1(orderNo);
+        return object;
     }
 }

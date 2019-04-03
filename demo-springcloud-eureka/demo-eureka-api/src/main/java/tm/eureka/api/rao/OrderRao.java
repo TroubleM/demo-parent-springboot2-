@@ -1,13 +1,12 @@
 
-package tm.rao;
+package tm.eureka.api.rao;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import tm.eureka.api.hystrix.OrderRaoHystrix;
 
-@FeignClient(name = "demo-eureka-producer-order")
+@FeignClient(name = "demo-eureka-producer-order",fallback = OrderRaoHystrix.class)
 @RequestMapping(value = "order")
 public interface OrderRao {
 
