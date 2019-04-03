@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tm.bean.OrderResponse;
-import tm.rao.OrderRao;
-import tm.rao.StorageRao;
+import tm.eureka.order.rao.OrderRao;
+import tm.eureka.rao.StorageRao;
 import tm.service.spi.CustomerService;
 
 @Service

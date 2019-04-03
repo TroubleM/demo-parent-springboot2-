@@ -77,6 +77,12 @@
             <artifactId>spring-cloud-starter-feign</artifactId>
             <version>${cloud.feign.version}</version>
         </dependency>
+        <!--hystrix-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-hystrix</artifactId>
+            <version>${cloud.eureka.version}</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

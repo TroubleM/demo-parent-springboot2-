@@ -25,11 +25,12 @@ public class OrderController {
 
         LOGGER.info("Order Service Begin ... xid: " + RootContext.getXID());
 
-        OrderResponse orderResponse = orderService.create("U100001", "C00321", 1);
 
         if(code.equals("-1")){
             System.out.println(1/0);
         }
+
+        OrderResponse orderResponse = orderService.create("U100001", "C00321", 1);
 
         return orderResponse;
     }
