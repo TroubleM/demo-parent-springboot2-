@@ -13,6 +13,7 @@
       <module>demo-security</module>
     <module>demo-springcloud-eureka</module>
     <module>demo-cloud-fescar</module>
+      <module>demo-redis-geo</module>
   </modules>
 
   <name>demo-parent-springboot2</name>
