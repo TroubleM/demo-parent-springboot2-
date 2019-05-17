@@ -43,7 +43,7 @@ public class JedisPoolConfig extends GenericObjectPoolConfig {
         jedisPoolConfig.setMaxActive(maxActive);
         jedisPoolConfig.setMinIdle(minIdle);
         JedisPool jedisPool = new JedisPool(jedisPoolConfig,host,port,timeout,null);
-        System.out.println("JedisPool注入成功！" + "---" + host +  "---");
+        System.out.println("Jedis连接池注入成功！" + "---" + host +  "---");
         return  jedisPool;
     }
 

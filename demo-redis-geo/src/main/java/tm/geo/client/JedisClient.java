@@ -1,9 +1,12 @@
 package tm.geo.client;
 
+import com.google.common.collect.Lists;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.*;
 import redis.clients.jedis.params.GeoRadiusParam;
+import tm.geo.response.MyGeoRadiusResponse;
 
 import java.util.List;
 import java.util.Map;
@@ -21,16 +24,17 @@ public class JedisClient {
 
     /**
      * @Author zhangyi
-     * @Description: 添加经纬度数据
+     * @Description: 添加经纬度坐标点数据
      * @Date  2019/4/9
      * @Param [key, geoCoordinate, memberName]
-     * @return java.lang.Long
+     * @return java.lang.Long 返回成功存入数据数量
      **/
     public Long geoAdd(String key, GeoCoordinate geoCoordinate, String memberName){
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-            return jedis.geoadd(key,geoCoordinate.getLongitude(),geoCoordinate.getLatitude(),memberName);
+            return jedis.geoadd(key,geoCoordinate.getLongitude(),
+                    geoCoordinate.getLatitude(),memberName);
         }catch (Exception e){
             e.printStackTrace();
         }finally {
@@ -66,12 +70,14 @@ public class JedisClient {
      * @Param [key, geoCoordinate, radius]
      * @return java.util.List<redis.clients.jedis.GeoCoordinate>
      **/
-    public List<GeoRadiusResponse> geoRadius(String key, GeoCoordinate geoCoordinate, Double radius){
+    public List<MyGeoRadiusResponse> geoRadius(String key, GeoCoordinate geoCoordinate, Double radius){
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-            return jedis.georadius(key,geoCoordinate.getLongitude(),geoCoordinate.getLatitude(),
-                    radius, GeoUnit.KM, GeoRadiusParam.geoRadiusParam().withDist().withCoord().sortAscending());
+            List<GeoRadiusResponse> geoRadiusResponses = jedis.georadius(key,geoCoordinate.getLongitude()
+                    ,geoCoordinate.getLatitude(), radius, GeoUnit.KM, GeoRadiusParam.geoRadiusParam()
+                            .withDist().withCoord().sortAscending());
+            return this.handleMyGeoRadiusResponse(geoRadiusResponses);
         }catch (Exception e){
             e.printStackTrace();
         }finally {
@@ -87,12 +93,14 @@ public class JedisClient {
      * @Param [key, memberName, redius]
      * @return java.util.List<redis.clients.jedis.GeoRadiusResponse>
      **/
-    public List<GeoRadiusResponse> getRadius4MemberName(String key, String memberName, Double radius){
+    public List<MyGeoRadiusResponse> getRadius4MemberName(String key, String memberName, Double radius){
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-            return jedis.georadiusByMember(key,memberName,
-                    radius, GeoUnit.M, GeoRadiusParam.geoRadiusParam().withDist().withCoord().sortAscending());
+            List<GeoRadiusResponse> geoRadiusResponses = jedis.georadiusByMember(key,memberName,
+                    radius, GeoUnit.KM, GeoRadiusParam.geoRadiusParam().
+                            withDist().withCoord().sortAscending());
+            return this.handleMyGeoRadiusResponse(geoRadiusResponses);
         }catch (Exception e){
             e.printStackTrace();
         }finally {
@@ -113,6 +121,26 @@ public class JedisClient {
         try {
             jedis = jedisPool.getResource();
             return jedis.geodist(key,fristMemberName,lastMemberName,geoUnit);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            release(jedis);
+        }
+        return null;
+    }
+
+    /**
+     * @Author zhangyi
+     * @Description: 根据坐标名称数据删除对应坐标点
+     * @Date  2019/5/17
+     * @Param [key, members]
+     * @return java.lang.Long
+     **/
+    public Long geoDelCoordinates(String key, String... members){
+        Jedis jedis = null;
+        try {
+            jedis = jedisPool.getResource();
+            return jedis.zrem(key,members);
         }catch (Exception e){
             e.printStackTrace();
         }finally {
@@ -152,6 +180,27 @@ public class JedisClient {
         if(null != jedis){
             jedis.close();
         }
+    }
+
+    /**
+     * @Author zhangyi
+     * @Description: 坐标点返回值封装
+     * @Date  2019/5/17
+     * @Param [geoRadiusResponses]
+     * @return java.util.List<tm.geo.response.MyGeoRadiusResponse>
+     **/
+    private List<MyGeoRadiusResponse> handleMyGeoRadiusResponse(
+            List<GeoRadiusResponse> geoRadiusResponses){
+        //返回集合
+        List<MyGeoRadiusResponse> resultList = Lists.newArrayList();
+
+        for (GeoRadiusResponse geoRadiusResponse : geoRadiusResponses){
+            MyGeoRadiusResponse myGeoRadiusResponse = new MyGeoRadiusResponse();
+            BeanUtils.copyProperties(geoRadiusResponse,myGeoRadiusResponse);
+            myGeoRadiusResponse.setMember(new String(geoRadiusResponse.getMember()));
+            resultList.add(myGeoRadiusResponse);
+        }
+        return resultList;
     }
 
 }
