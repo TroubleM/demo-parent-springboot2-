@@ -62,8 +62,6 @@ public class GeoTestController {
         return null;
     }
 
-
-
     /**
      * @Author zhangyi
      * @Description: 批量添加坐标、
@@ -95,6 +93,28 @@ public class GeoTestController {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * @Author zhangyi
+     * @Description: 根据坐标名称获取坐标信息
+     * @Date  2019/5/17
+     * @Param [memberName]
+     * @return java.lang.Object
+     **/
+    @PostMapping(value = "geoPos")
+    @ApiOperation("根据坐标名称获取坐标信息")
+    public Object geoPos(@ApiParam("坐标点名称")
+                         @RequestParam(value = "memberName") String memberName){
+        try {
+            Map<String,Object> resultMap = Maps.newHashMap();
+            resultMap.put("result",jedisClient.geoPos(GEO_KEY,memberName));
+            return resultMap;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+
     }
 
     /**

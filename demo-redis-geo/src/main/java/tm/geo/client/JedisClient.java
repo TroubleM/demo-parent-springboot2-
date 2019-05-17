@@ -1,15 +1,17 @@
 package tm.geo.client;
 
-import com.google.common.collect.Lists;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.google.common.collect.Lists;
+
 import redis.clients.jedis.*;
 import redis.clients.jedis.params.GeoRadiusParam;
 import tm.geo.response.MyGeoRadiusResponse;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * @auther: zhangyi
@@ -55,6 +57,26 @@ public class JedisClient {
         try {
             jedis = jedisPool.getResource();
                 return jedis.geoadd(key,paramMap);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            release(jedis);
+        }
+        return null;
+    }
+
+    /**
+     * @Author zhangyi
+     * @Description: 根据坐标点名称获取坐标点信息
+     * @Date  2019/5/17
+     * @Param [key, memberName]
+     * @return java.util.List<redis.clients.jedis.GeoCoordinate>
+     **/
+    public List<GeoCoordinate> geoPos(String key, String memberName){
+        Jedis jedis = null;
+        try {
+            jedis = jedisPool.getResource();
+            return jedis.geopos(key,memberName);
         }catch (Exception e){
             e.printStackTrace();
         }finally {
