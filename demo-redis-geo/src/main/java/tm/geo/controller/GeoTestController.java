@@ -148,7 +148,7 @@ public class GeoTestController {
      * @return java.lang.Object
      **/
     @PostMapping(value = "getRadius4MemberName")
-    @ApiOperation("根据一个区域的名称获取某一个距离内的地点集合")
+    @ApiOperation("根据坐标点的名称获取某一个距离内的地点集合")
     public Object getRadius4MemberName(@ApiParam("坐标点名称") @RequestParam(value = "memberName")
                                                    String memberName,
                                        @ApiParam("距离半径") @RequestParam(value = "radius")
