@@ -56,7 +56,7 @@ public class JedisClient {
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-                return jedis.geoadd(key,paramMap);
+                    return jedis.geoadd(key,paramMap);
         }catch (Exception e){
             e.printStackTrace();
         }finally {
@@ -87,7 +87,7 @@ public class JedisClient {
 
     /**
      * @Author zhangyi
-     * @Description: 获取某个点的一定长度内的经纬度集合信息
+     * @Description: 获取某个点的一定长度内的坐标点集合信息
      * @Date  2019/4/9
      * @Param [key, geoCoordinate, radius]
      * @return java.util.List<redis.clients.jedis.GeoCoordinate>
@@ -110,7 +110,7 @@ public class JedisClient {
 
     /**
      * @Author zhangyi
-     * @Description: 获取某个值的一定长度内的经纬度信息
+         * @Description: 获取某个坐标名称一定长度内的坐标点信息
      * @Date  2019/4/9
      * @Param [key, memberName, redius]
      * @return java.util.List<redis.clients.jedis.GeoRadiusResponse>

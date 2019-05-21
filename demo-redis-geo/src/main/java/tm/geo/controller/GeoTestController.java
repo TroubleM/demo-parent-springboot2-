@@ -125,7 +125,7 @@ public class GeoTestController {
      * @return java.lang.Object
      **/
     @PostMapping(value = "geoRadius")
-    @ApiOperation("根据经纬度获取周围一定距离的集合信息")
+    @ApiOperation("获取某个点的一定长度内的坐标点集合信息")
     public Object geoRadius(@ApiParam("经度") @RequestParam(value = "longitude") Double longitude,
                             @ApiParam("纬度") @RequestParam(value = "latitude") Double latitude,
                             @ApiParam("距离半径") @RequestParam(value = "radius") Double radius){
@@ -148,7 +148,7 @@ public class GeoTestController {
      * @return java.lang.Object
      **/
     @PostMapping(value = "getRadius4MemberName")
-    @ApiOperation("根据坐标点的名称获取某一个距离内的地点集合")
+    @ApiOperation("获取某个坐标名称一定长度内的坐标点信息")
     public Object getRadius4MemberName(@ApiParam("坐标点名称") @RequestParam(value = "memberName")
                                                    String memberName,
                                        @ApiParam("距离半径") @RequestParam(value = "radius")
