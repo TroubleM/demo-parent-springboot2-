@@ -1,8 +1,9 @@
 package tm.elasticsearch.bean;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 /**
  * @auther: zhangyi
@@ -15,22 +16,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Document(indexName = "demo", type = "demo_bean")
 public class DemoBean {
 
-    @JsonProperty("id")
+    @Id
     private Long id;
 
-    @JsonProperty("code")
+    @Field(type= FieldType.Text,fielddata=true)
     private String code;
 
-    @JsonProperty("userName")
+    @Field(type= FieldType.Text,fielddata=true)
     private String userName;
 
-    @JsonProperty("password")
+    @Field(type= FieldType.Text,fielddata=true)
     private String password;
 
-    @JsonProperty("mail")
+    @Field(type= FieldType.Text,fielddata=true)
     private String mail;
 
-    @JsonProperty("phone")
+    @Field(type= FieldType.Text,fielddata=true)
     private String phone;
 
     public Long getId() {
