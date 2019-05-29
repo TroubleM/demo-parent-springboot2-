@@ -94,7 +94,7 @@ public class DemoTest {
 
     @Test
     public void testElasticsearchDeleteIndex(){
-        DeleteIndexResponse deleteIndexResponse = demoService.deleteIndex("demo2");
+        DeleteIndexResponse deleteIndexResponse = demoService.deleteIndex("demo");
         System.out.println(deleteIndexResponse.isAcknowledged());
     }
 
@@ -106,7 +106,7 @@ public class DemoTest {
         while (iterator.hasNext()){
             count += 1;
             DemoBean demoBean = iterator.next();
-            System.out.println(demoBean.getCode());
+            System.out.println(demoBean.getUserName());
         }
         System.out.println("总数--------" + count);
     }
@@ -167,7 +167,7 @@ public class DemoTest {
 
         NativeSearchQueryBuilder demoQuery = new NativeSearchQueryBuilder();
 
-        demoQuery.withQuery(QueryBuilders.wildcardQuery("code","*75*")).
+        demoQuery.withQuery(QueryBuilders.wildcardQuery("userName","你有戏")).
                 withSort(SortBuilders.fieldSort("code").order(SortOrder.DESC));
         Iterator<DemoBean> iterator = demoRepository.
                 search(demoQuery.build()).iterator();

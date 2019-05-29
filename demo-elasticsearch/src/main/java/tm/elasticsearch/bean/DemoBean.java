@@ -19,10 +19,10 @@ public class DemoBean {
     @Id
     private Long id;
 
-    @Field(type= FieldType.Text,fielddata=true)
+    @Field(type= FieldType.Text,fielddata=true,analyzer = "ik_max_word", searchAnalyzer = "ik_max_word")
     private String code;
 
-    @Field(type= FieldType.Text,fielddata=true)
+    @Field(type= FieldType.Text,fielddata=true,analyzer = "ik_max_word", searchAnalyzer = "ik_max_word")
     private String userName;
 
     @Field(type= FieldType.Text,fielddata=true)
