@@ -14,6 +14,9 @@
     <module>demo-springcloud-eureka</module>
     <module>demo-cloud-fescar</module>
       <module>demo-redis-geo</module>
+      <module>demo-elasticsearch</module>
+      <module>demo-hadoop</module>
+      <module>demo-disconf</module>
   </modules>
 
   <name>demo-parent-springboot2</name>
