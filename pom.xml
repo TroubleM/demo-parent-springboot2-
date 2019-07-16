@@ -17,6 +17,8 @@
       <module>demo-elasticsearch</module>
       <module>demo-hadoop</module>
       <module>demo-disconf</module>
+      <module>demo-rabbitmq</module>
+      <module>demo-redistemplate-export</module>
   </modules>
 
   <name>demo-parent-springboot2</name>

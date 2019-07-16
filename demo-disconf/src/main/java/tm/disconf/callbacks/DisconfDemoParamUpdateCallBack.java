@@ -14,16 +14,17 @@ import tm.disconf.param.DisconfDemoParam;
 /**
  * 更新配置时的回调
  */
-@Service
-@DisconfUpdateService(classes = { DisconfDemoParam.class})
-public class DisconfDemoParamUpdateCallback implements IDisconfUpdate {
+//@Service
+//@DisconfUpdateService(classes = { DisconfDemoParam.class})
+public class DisconfDemoParamUpdateCallBack implements IDisconfUpdate {
 
     protected static final Logger LOGGER = LoggerFactory
-            .getLogger(DisconfDemoParamUpdateCallback.class);
+            .getLogger(DisconfDemoParamUpdateCallBack.class);
 
     @Autowired
     private DisconfDemoParam disconfDemoParam;
 
+    @Override
     public void reload() throws Exception {
         LOGGER.info("tm.disconf.param.DisconfDemoParam类修改配置" +
                 disconfDemoParam.getUsername() + "--------" +
