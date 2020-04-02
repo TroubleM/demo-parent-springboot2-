@@ -19,6 +19,8 @@
       <module>demo-disconf</module>
       <module>demo-rabbitmq</module>
       <module>demo-redistemplate-export</module>
+      <module>demo-mongo</module>
+      <module>demo-redistemplate</module>
   </modules>
 
   <name>demo-parent-springboot2</name>
