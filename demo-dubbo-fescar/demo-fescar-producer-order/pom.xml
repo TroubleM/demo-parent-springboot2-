@@ -19,7 +19,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <dubbo.version>2.6.5</dubbo.version>
+        <dubbo.version>2.6.12</dubbo.version>
         <lombok-version>1.16.16</lombok-version>
         <mybatis-boot-version>2.0.0</mybatis-boot-version>
         <druid-boot-version>1.1.10</druid-boot-version>
